@@ -27,7 +27,7 @@ export default class Youtube {
         res.data.items.map((item) => ({ ...item, id: item.id.videoId }))
       );
   }
-
+  
   async #searchByKeyword(keyword) {
     return this.apiClient
       .search({
