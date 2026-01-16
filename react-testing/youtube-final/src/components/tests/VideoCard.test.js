@@ -21,24 +21,10 @@ import "@testing-library/jest-dom";
 import VideoCard from "../VideoCard";
 import { createRoutesStub, useLocation } from "react-router";
 import { formatAgo } from "../../util/date";
+import { videoStub as video } from "../../tests/videos";
 import userEvent from "@testing-library/user-event";
 
 describe("@src/components/VideoCard.jsx", () => {
-  const video = {
-    id: 1,
-    snippet: {
-      title: "title",
-      channelId: "1",
-      channelTitle: "channelTitle",
-      publishedAt: new Date(),
-      thumbnails: {
-        medium: {
-          url: "http://image/",
-        },
-      },
-    },
-  };
-
   it("비디오 카드가 렌더링된다.", () => {
     const Stub = createRoutesStub([
       {
