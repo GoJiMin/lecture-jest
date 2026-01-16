@@ -37,7 +37,7 @@ describe("@src/components/VideoCard.jsx", () => {
 
     const { title, channelTitle, publishedAt, thumbnails } = video.snippet;
 
-    const image = screen.getByRole("img");
+    const image = screen.getByRole("img", { name: title });
 
     expect(image.src).toBe(thumbnails.medium.url);
     expect(image.alt).toBe(title);
@@ -45,6 +45,34 @@ describe("@src/components/VideoCard.jsx", () => {
     expect(screen.getByText(title)).toBeInTheDocument();
     expect(screen.getByText(channelTitle)).toBeInTheDocument();
     expect(screen.getByText(formatAgo(publishedAt))).toBeInTheDocument();
+  });
+
+  it("비디오 카드가 그리드 형태로 렌더링된다.", () => {
+    const Stub = createRoutesStub([
+      {
+        path: "/",
+        Component: () => <VideoCard video={video} />,
+      },
+    ]);
+
+    const { asFragment } = render(<Stub />);
+    const firstRender = asFragment();
+
+    expect(firstRender).toMatchSnapshot();
+  });
+
+  it("비디오 카드가 리스트 형태로 렌더링된다.", () => {
+    const Stub = createRoutesStub([
+      {
+        path: "/",
+        Component: () => <VideoCard video={video} type="list" />,
+      },
+    ]);
+
+    const { asFragment } = render(<Stub />);
+    const firstRender = asFragment();
+
+    expect(firstRender).toMatchSnapshot();
   });
 
   it("비디오 카드를 클릭하면 비디오 정보와 함께 상세 페이지로 이동한다.", async () => {
