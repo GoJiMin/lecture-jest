@@ -24,7 +24,7 @@ describe("@/src/components/ChannelInfo.jsx", () => {
 
   afterEach(() => youtube.channelImageURL.mockReset());
 
-  it("컴포넌트가 렌더린된다.", async () => {
+  it("컴포넌트가 렌더링된다.", async () => {
     youtube.channelImageURL.mockImplementation(() => "url-jimin");
     const Stub = createRoutesStub([
       {
@@ -33,8 +33,48 @@ describe("@/src/components/ChannelInfo.jsx", () => {
       },
     ]);
 
-    render(withAllContexts(<Stub />, youtube));
+    const { asFragment } = render(withAllContexts(<Stub />, youtube));
 
     await waitFor(() => screen.findByText("name-jimin"));
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it("url이 있다면 이미지를 표시한다.", async () => {
+    const channelName = "name-jimin";
+    youtube.channelImageURL.mockImplementation(() => "url-jimin");
+    const Stub = createRoutesStub([
+      {
+        path: "/",
+        Component: () => <ChannelInfo id="id-jimin" name={channelName} />,
+      },
+    ]);
+
+    render(withAllContexts(<Stub />, youtube));
+
+    await waitFor(async () => {
+      const img = await screen.findByRole("img", { name: channelName });
+
+      expect(img).toBeInTheDocument();
+    });
+  });
+
+  it("url이 없다면 이름만 표시한다.", async () => {
+    const channelName = "name-jimin";
+    youtube.channelImageURL.mockImplementation(() => {
+      throw new Error("error");
+    });
+    const Stub = createRoutesStub([
+      {
+        path: "/",
+        Component: () => <ChannelInfo id="id-jimin" name={channelName} />,
+      },
+    ]);
+
+    render(withAllContexts(<Stub />, youtube));
+
+    const img = screen.queryByRole("img", { name: channelName });
+
+    expect(img).toBeNull();
+    expect(screen.getByText(channelName)).toBeInTheDocument();
   });
 });
