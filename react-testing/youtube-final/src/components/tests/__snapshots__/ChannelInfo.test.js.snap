@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@/src/components/ChannelInfo.jsx 컴포넌트가 렌더린된다. 1`] = `
+exports[`@/src/components/ChannelInfo.jsx 컴포넌트가 렌더링된다. 1`] = `
 <DocumentFragment>
   <div
     class="flex my-4 mb-8 items-center"
