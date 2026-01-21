@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@/src/pages/NotFound.jsx 컴포넌트가 렌더링된다. 1`] = `
+<DocumentFragment>
+  <div>
+    Not Found!
+  </div>
+</DocumentFragment>
+`;
