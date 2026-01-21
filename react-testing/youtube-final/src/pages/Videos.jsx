@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import VideoCard from "../components/VideoCard";
-import { useYoutubeApi } from "../context/YoutubeApiContext";
+import { useYoutubeApi } from "../context/YoutubeProvider";
 
 export default function Videos() {
   const { keyword } = useParams();
