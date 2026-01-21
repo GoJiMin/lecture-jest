@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { YoutubeApiContext } from "../../context/YoutubeProvider";
+import { YoutubeApiContext } from "../context/YoutubeProvider";
 
 function withAllContexts(children, youtube) {
   const queryClient = createTestQueryClient();

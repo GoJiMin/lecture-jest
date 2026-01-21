@@ -27,7 +27,7 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
-import { withAllContexts } from "./utils";
+import { withAllContexts } from "../../tests/utils";
 
 describe("@/src/components/RelatedVideos.jsx", () => {
   // 네트워크 의존성 제거를 위한 모킹

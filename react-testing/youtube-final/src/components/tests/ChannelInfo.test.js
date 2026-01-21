@@ -15,7 +15,7 @@
 import { createRoutesStub } from "react-router";
 import { render, screen, waitFor } from "@testing-library/react";
 import ChannelInfo from "../ChannelInfo";
-import { withAllContexts } from "./utils";
+import { withAllContexts } from "../../tests/utils";
 
 describe("@/src/components/ChannelInfo.jsx", () => {
   const youtube = {
